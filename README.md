@@ -1,6 +1,6 @@
 # Nginx-config-creator
 Program help to create basic nginx configs \
-This cli program can help to create basic nginx configs \
+This cli program can help to create basic nginx configs
 
 ## Start
 #### Easy Start
