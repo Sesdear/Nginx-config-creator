@@ -29,14 +29,14 @@ int main() {
         fs::create_directory(defaultPath);
     }
 
-    std::cout << "------NGINX CONFIG CREATOR cli------" << std::endl;
+    std::cout << "---NGINX CONFIG CREATOR cli---" << std::endl;
     std::cout << "This program help to create nginx config files" << std::endl << std::endl;
     std::cout << "1. Generate Reverse Proxy config" << std::endl;
     std::cout << "2. Generate Static config" << std::endl;
     std::cout << "3. Generate HTTPS Static config" << std::endl;
     std::cout << "4. Generate PHP-FPM" << std::endl;
     std::cout << "0. Exit" << std::endl;
-    std::cout << "-----------------------------" << std::endl;
+    std::cout << "------------------------------" << std::endl;
     std::cout << "Choose option: ";
 
     std::cin >> user_option;
