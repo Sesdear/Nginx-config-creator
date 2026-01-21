@@ -1,11 +1,11 @@
 # Nginx-config-creator
 Program help to create basic nginx configs \
-This program can help to create basic nginx configs \
+This cli program can help to create basic nginx configs \
 In 1.0.0 program can create: \n
 - Reverse Proxy config
 - Static Website config
-- Generate HTTPS Static config
-- Generate PHP-FPM
+- HTTPS Static config
+- PHP-FPM config
 ## Start
 #### Easy Start
 1. `wget https://github.com/Sesdear/Nginx-config-creator/releases/download/1.x/NginxConfigCreator`
