@@ -4,7 +4,8 @@
 #include <string>
 #include <random>
 #include <algorithm>
-std::string generateRandomString(size_t length) {
+
+inline std::string generateRandomString(size_t length) {
     const std::string CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                     "abcdefghijklmnopqrstuvwxyz"
                                     "0123456789";
@@ -23,4 +24,4 @@ std::string generateRandomString(size_t length) {
     return random_string;
 }
 
-#endif // RANDOM_STRING_GENERATOR_H
+#endif
