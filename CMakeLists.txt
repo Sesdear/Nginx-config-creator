@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(NginxManagerCli
-    VERSION 1.5.0
+    VERSION 1.6.0
     DESCRIPTION "CLI tool for Nginx config creator by Sesdear"
     LANGUAGES CXX
 )
