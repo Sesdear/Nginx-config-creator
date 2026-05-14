@@ -5,44 +5,45 @@
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
+#include <unistd.h>
+#include <filesystem>
 
 #include "RandomStringGenerator.h"
 
-const std::string defaultPath = "./generated-configs/";
+const std::string defaultPath = "/etc/nginx/sites-available/";
 
 namespace config_generators
 {
-    class config_generator{
-        public: 
-            void redirect_menu(int user_option);
-            void crear_console(){std::system("clear");}
+    class config_generator
+    {
+    public:
+        void redirect_menu(int user_option);
+        void crear_console() { std::system("clear"); }
     };
     class config_generator_rp
     {
-        public:
-            void rp_http_config();
-            void rp_https_config();
-            void rp_http_https_config();
-            void crear_console(){std::system("clear");}
+    public:
+        void rp_http_config();
+        void rp_https_config();
+        void rp_http_https_config();
+        void crear_console() { std::system("clear"); }
     };
     class config_generator_static
     {
-        public:
-            void static_http_config();
-            void static_https_config();
-            void crear_console(){std::system("clear");}
+    public:
+        void static_http_config();
+        void static_https_config();
+        void crear_console() { std::system("clear"); }
     };
     class config_generator_php
     {
-        public:
-            void php_http_config();
-            void php_https_config();
-            void php_http_https_config();
-            void crear_console(){std::system("clear");}
+    public:
+        void php_http_config();
+        void php_https_config();
+        void php_http_https_config();
+        void crear_console() { std::system("clear"); }
     };
-
-    
 
 }
 
-#endif 
+#endif
