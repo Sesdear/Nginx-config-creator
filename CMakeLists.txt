@@ -11,6 +11,6 @@ include_directories(include)
 
 file(GLOB SOURCES "src/*.cpp")
 
-add_executable(nginx-manager-cli ${SOURCES})
+add_executable(NginxConfigCreator ${SOURCES})
 
 message(STATUS "Building ${PROJECT_NAME} version ${PROJECT_VERSION}")
