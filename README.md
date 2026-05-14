@@ -5,7 +5,7 @@ This cli program can help to create basic nginx configs
 ## Start
 #### Easy Start
 ```Bash
-sudo wget https://github.com/Sesdear/Nginx-config-creator/releases/download/1.5.0/NginxConfigCreator -O /usr/bin/NginxConfigCreator
+sudo wget https://github.com/Sesdear/Nginx-config-creator/releases/download/1.6.0/NginxConfigCreator -O /usr/bin/NginxConfigCreator
 sudo chmod +x /usr/bin/NginxConfigCreator
 NginxConfigCreator
 ```
