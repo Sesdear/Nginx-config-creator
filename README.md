@@ -100,8 +100,8 @@ This project is licensed under the [Apache License](LICENSE)
 ## Author
 
 **HLNikNiky**:
-[GitHub](https://github.com/Sesdear)
-[Telegram Channel](https://t.me/hlniknikydevblog)
+[GitHub](https://github.com/Sesdear)\
+[Telegram Channel](https://t.me/hlniknikydevblog)\
 [X](https://x.com/sergeyorekhoval)
 
 ## Contributing
