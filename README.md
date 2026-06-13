@@ -9,7 +9,7 @@ Simple solution to create basic nginx configs faster.
 
 ## Requirements
 
-- Operating System: Linux / macOS / Windows
+- Operating System: Linux
 - CMake 3.16+, GCC 9+, unistd, stdlib, argparse
 
 ## Installation
