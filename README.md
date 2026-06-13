@@ -6,7 +6,6 @@ sudo wget https://github.com/Sesdear/Nginx-config-creator/releases/download/1.6.
 sudo chmod +x /usr/bin/NginxConfigCreator
 NginxConfigCreator
 ```
-[RU Readme](README.ru.md)
 
 Simple solution to create basic nginx configs faster.
 
@@ -67,11 +66,11 @@ nginxcc --help
 | `nginxcc --ssl-session-cache`   | SSL Session Cache in megabytes (Default: `10`)                                      Optional |
 
 ### Types
-| Name     | Description                       |
-| -------- | --------------------------------- |
-| `rp_hhs` | Reverse proxy http redirect https |
-| `rp_h`   | Reverse proxy http                |
-| `rp_hs`  | Reverse proxy https               |
+| Name     | Description                                     |
+| -------- | ----------------------------------------------- |
+| `rp_hhs` | Reverse proxy http redirect https               |
+| `rp_h`   | Reverse proxy http                (In progress) |
+| `rp_hs`  | Reverse proxy https               (In progress) |
 
 ### Examples
 

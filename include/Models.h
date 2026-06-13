@@ -11,8 +11,9 @@ struct config_model
     bool is_symlink = false;
     std::string ssl_protocols;
     std::string ssl_chipers;
-    int ssl_session_cache;
-    int ssl_session_timeout;
+    std::string ssl_session_cache;
+    std::string ssl_session_timeout;
+    bool debug = false;
 };
 
 #endif

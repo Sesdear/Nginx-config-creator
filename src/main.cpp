@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
     const std::string defaultSymlinkPath = "/etc/nginx/sites-enabled/";
     const std::string defaultSSLChipers = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256";
     const std::string defaultSSLProtocols = "TLSv1.2 TLSv1.3";
-    const int defaultSSLSessionTimeout = 10;
-    const int defaultSSLSessionCache = 10;
+    const std::string defaultSSLSessionTimeout = "10";
+    const std::string defaultSSLSessionCache = "10";
 
     // Dynamic Vars
     std::string domain;
@@ -50,6 +50,9 @@ int main(int argc, char *argv[])
     program.add_argument("-o", "--output")
         .help("Path to save config (Default: /etc/nginx/sites-available/{domain}_{type})")
         .default_value(defaultOutputPath);
+    program.add_argument("--debug")
+        .help("Print debug messages")
+        .flag();
 
     // SSL Flags
     program.add_argument("--ssl-chipers")
@@ -75,20 +78,38 @@ int main(int argc, char *argv[])
 
     config_model.domain = program.get<std::string>("-d");
     config_model.service_address = program.get<std::string>("-a");
-    config_model.output_path = program.get<std::string>("-o");
     config_model.is_symlink = program.get<bool>("-s");
     config_model.ssl_chipers = program.get<std::string>("--ssl-chipers");
-    config_model.ssl_session_timeout = program.get<int>("--ssl-session-timeout");
-    config_model.ssl_session_cache = program.get<int>("--ssl-session-cache");
+    config_model.ssl_session_timeout = program.get<std::string>("--ssl-session-timeout");
+    config_model.ssl_session_cache = program.get<std::string>("--ssl-session-cache");
+    config_model.debug = program.get<bool>("--debug");
+
+    if (program.get<std::string>("-o") == defaultOutputPath)
+    {
+        config_model.output_path = defaultOutputPath + config_model.domain + "_" + program.get<std::string>("-t");
+    }
 
     type = HELPER_H::parse_type(program.get<std::string>("-t"));
     switch (type)
     {
     case HELPER_H::Type::rp_hhs:
+        if (config_model.debug)
+        {
+            std::cout << "[INFO]: Start create script.\n";
+        }
         is_complete = CREATE_CONFIGS_H::create_rp_hhs(config_model);
+        if (config_model.debug && is_complete)
+        {
+            std::cout << "[INFO]: Create script success complete.\n";
+        }
+
         break;
 
     case HELPER_H::Type::Unknown:
+        if (config_model.debug)
+        {
+            std::cout << "[ERROR]: Unknown type.\n";
+        }
         std::cout << "Unknown type.\n";
         return 1;
 
@@ -98,6 +119,10 @@ int main(int argc, char *argv[])
 
     if (!is_complete)
     {
+        if (config_model.debug)
+        {
+            std::cout << "[ERROR]: Script not complete.";
+        }
         return 1;
     }
 
