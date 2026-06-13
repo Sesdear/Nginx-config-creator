@@ -18,7 +18,7 @@ Simple solution to create basic nginx configs faster.
 ## Requirements
 
 - Operating System: Linux / macOS / Windows
-- CMake 3.16+, GCC 9+, unistd, stdlib
+- CMake 3.16+, GCC 9+, unistd, stdlib, argparse
 
 ## Installation
 
