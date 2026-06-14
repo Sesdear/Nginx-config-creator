@@ -16,30 +16,9 @@ bool create_rp_hhs(MODELS_H::config_model config_model)
         std::cout << "[INFO]: Start create_rp_hhs function.\n";
     }
 
-    fs::path file_path(config_model.output_path);
-    fs::path parent_dir = file_path.parent_path();
-
-    if (parent_dir.empty())
+    if (!HELPER_H::check_directory_exists(config_model))
     {
-        parent_dir = ".";
-    }
-
-    if (!fs::exists(parent_dir))
-    {
-        if (config_model.debug)
-        {
-            std::cout << "[INFO]: Directory " << parent_dir << " does not exist. Trying to create...\n";
-        }
-
-        try
-        {
-            fs::create_directories(parent_dir);
-        }
-        catch (const fs::filesystem_error &e)
-        {
-            std::cout << "[ERROR]: Directory not available: " << e.what() << "\n";
-            return false;
-        }
+        return false;
     }
 
     if (config_model.debug)
@@ -50,12 +29,26 @@ bool create_rp_hhs(MODELS_H::config_model config_model)
     {
         if (config_model.debug)
         {
-            std::cout << "[INFO]: Start write file.\n";
-        }
-        std::ofstream Config;
+            std::cout << "[INFO]: Attempting to open: " << config_model.output_path << std::endl;
 
+            fs::path p = config_model.output_path;
+
+            if (fs::exists(p))
+            {
+                std::cout << "[INFO]: File exists. Size: " << fs::file_size(p) << " bytes" << std::endl;
+
+                auto perm = fs::status(p).permissions();
+                std::cout << "[INFO]: Permissions (oct): "
+                          << std::oct << static_cast<unsigned>(perm) << std::dec << std::endl;
+            }
+            else
+            {
+                std::cout << "[INFO]: File does not exist yet." << std::endl;
+            }
+        }
+
+        std::ofstream Config(config_model.output_path, std::ios::out | std::ios::trunc);
         Config.exceptions(std::ios::failbit | std::ios::badbit);
-        Config.open(config_model.output_path);
 
         Config << "server {\n"
                << "    listen 80;\n"
@@ -100,32 +93,7 @@ bool create_rp_hhs(MODELS_H::config_model config_model)
     }
     if (config_model.is_symlink)
     {
-        try
-        {
-            fs::path target = config_model.output_path;
-
-            fs::path enabled_dir = "/etc/nginx/sites-enabled/";
-
-            fs::path link = enabled_dir / target.filename();
-
-            if (config_model.debug)
-            {
-                std::cout << "[INFO]: Creating symlink from " << target << " to " << link << "\n";
-            }
-
-            if (fs::exists(link) || fs::is_symlink(link))
-            {
-                fs::remove(link);
-            }
-
-            fs::create_symlink(target, link);
-
-            std::cout << "Symlink successfully created!\n";
-        }
-        catch (const fs::filesystem_error &e)
-        {
-            std::cerr << "[ERROR]: Symlink creation failed: " << e.what() << "\n";
-        }
+        HELPER_H::create_symlink(config_model);
     }
 
     if (config_model.debug)

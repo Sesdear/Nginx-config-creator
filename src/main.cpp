@@ -79,14 +79,21 @@ int main(int argc, char *argv[])
     config_model.domain = program.get<std::string>("-d");
     config_model.service_address = program.get<std::string>("-a");
     config_model.is_symlink = program.get<bool>("-s");
+    config_model.ssl_protocols = defaultSSLProtocols;
     config_model.ssl_chipers = program.get<std::string>("--ssl-chipers");
     config_model.ssl_session_timeout = program.get<std::string>("--ssl-session-timeout");
     config_model.ssl_session_cache = program.get<std::string>("--ssl-session-cache");
     config_model.debug = program.get<bool>("--debug");
 
-    if (program.get<std::string>("-o") == defaultOutputPath)
+    std::string outputArg = program.get<std::string>("-o");
+
+    if (outputArg == defaultOutputPath)
     {
         config_model.output_path = defaultOutputPath + config_model.domain + "_" + program.get<std::string>("-t");
+    }
+    else
+    {
+        config_model.output_path = outputArg;
     }
 
     type = HELPER_H::parse_type(program.get<std::string>("-t"));
@@ -126,7 +133,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    std::cout << "Config success created!\n";
+    std::cout << "Config success created to " + config_model.output_path + "\n";
 
     return 0;
 }
