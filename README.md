@@ -17,7 +17,7 @@ Simple solution to create basic nginx configs faster.
 ### Quick Install (Recommended)
 
 ```bash
-sudo wget https://github.com/Sesdear/Nginx-config-creator/releases/download/2.0.0/nginxcc -O /usr/bin/nginxcc
+sudo wget https://github.com/Sesdear/Nginx-config-creator/releases/download/2.0.1/nginxcc -O /usr/bin/nginxcc
 sudo chmod +x /usr/bin/nginxcc
 ```
 
