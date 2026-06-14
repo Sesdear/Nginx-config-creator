@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(nginxcc
-    VERSION 2.0.0
+    VERSION 2.0.1
     DESCRIPTION "CLI tool for Nginx config creator by Seadear"
     LANGUAGES CXX
 )
